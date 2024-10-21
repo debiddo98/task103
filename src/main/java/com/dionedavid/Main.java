@@ -11,12 +11,52 @@ import javax.swing.*;
  * and outputs a pc configuration based on the user's needs.
  */
 
-public class Main {
+public class Main extends JFrame{
     private JPanel MainPanel;
-    private JButton button1;
-    private JButton xButton;
+    private JButton minimizeBtn;
+    private JButton closeBtn;
+
+    public Main(){
+        // Create the frame
+        JFrame frame = new JFrame();
+        frame.setTitle("Dione's PC Configuration Expert System");
+        frame.setUndecorated(true);
+        frame.setContentPane(MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(900, 500);
+
+        // Set the frame to be centered on the screen
+        frame.setLocationRelativeTo(null);
+
+        // Makes the frame draggable
+        //This makes the frame draggable
+        FrameDragListener frameDragListener = new FrameDragListener(frame);
+        frame.addMouseListener(frameDragListener);
+        frame.addMouseMotionListener(frameDragListener);
+
+        frame.pack();
+        frame.setVisible(true);
+
+        //Button Functions
+        minimizeBtn.addActionListener(e -> frame.setState(JFrame.ICONIFIED));
+        closeBtn.addActionListener(e -> System.exit(0));
+
+        System.out.printf("Hello and welcome!");
+    }
+
+
 
     public static void main(String[] args) {
-        System.out.printf("Hello and welcome!");
+        // Set the look and feel to the system's look and feel
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Instantiate the Main class
+        new Main();
+
+
     }
 }

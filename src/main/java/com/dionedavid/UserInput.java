@@ -1,5 +1,6 @@
 package com.dionedavid;
 
+
 public class UserInput {
     private int budget;
     private String platform;
